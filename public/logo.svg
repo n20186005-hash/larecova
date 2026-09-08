@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" role="img" aria-labelledby="title desc">
+<title id="title">La Recova La Serena</title><desc id="desc">Arco neocolonial y sol en tonos terracota</desc>
+<rect width="360" height="96" rx="20" fill="#fffaf1"/>
+<g transform="translate(16 12)"><path d="M8 72V40C8 18 25 2 48 2s40 16 40 38v32H70V42c0-13-9-22-22-22s-22 9-22 22v30H8Z" fill="#a94a36"/><path d="M23 72V42c0-15 10-27 25-27s25 12 25 27v30H60V43c0-8-4-14-12-14s-12 6-12 14v29H23Z" fill="#f5eddf"/><circle cx="48" cy="10" r="6" fill="#d89a45"/></g>
+<text x="120" y="47" fill="#211b17" font-size="28" font-family="Georgia,serif" font-weight="700">La Recova</text><text x="121" y="70" fill="#5c6445" font-size="14" font-family="Arial,sans-serif" letter-spacing="3">LA SERENA</text>
+</svg>

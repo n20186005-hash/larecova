@@ -1,0 +1,185 @@
+---
+import '../styles/global.css';
+
+const site = Astro.site;
+const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
+const ogImage = site ? new URL('/logo.svg', site).href : undefined;
+
+const photos = [
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Explanada_de_ingreso_a_La_Recova.jpg',
+    alt: 'Explanada y entorno histórico de La Recova en La Serena',
+    credit: 'Nicolescribe · CC BY-SA 4.0',
+    source: 'https://commons.wikimedia.org/wiki/File:Explanada_de_ingreso_a_La_Recova.jpg'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/4/47/Tienda_de_productos_artesanales_en_La_Recova.jpg',
+    alt: 'Puesto de productos y artesanías regionales en La Recova',
+    credit: 'Nicolescribe · CC BY-SA 4.0',
+    source: 'https://commons.wikimedia.org/wiki/File:Tienda_de_productos_artesanales_en_La_Recova.jpg'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Wiki_Tour_-_Recova.JPG',
+    alt: 'Fachada y paseo exterior de La Recova de La Serena',
+    credit: 'Nereidas · CC BY-SA 3.0',
+    source: 'https://commons.wikimedia.org/wiki/File:Wiki_Tour_-_Recova.JPG'
+  },
+  {
+    src: 'https://storage.googleapis.com/chile-travel-static-content/2019/10/La-Recova-ok.jpg',
+    alt: 'Patio interior con puestos de artesanía de La Recova',
+    credit: 'Chile Travel',
+    source: 'https://www.chile.travel/'
+  }
+];
+
+const faq = [
+  ['¿La entrada a La Recova es gratuita?', 'Sí. No se cobra entrada para recorrer el mercado; las compras, comidas y otros consumos se pagan por separado.'],
+  ['¿Qué conviene comprar?', 'Son característicos los productos de papaya, artesanías en piedra combarbalita, cerámica de inspiración diaguita, tejidos, joyería y recuerdos regionales.'],
+  ['¿Cuánto tiempo debería reservar?', 'Para una visita centrada en artesanías, calcula entre 45 y 90 minutos. Si vas a almorzar o recorrer con calma el segundo piso, reserva alrededor de 1,5 a 2 horas.'],
+  ['¿Se puede llegar caminando desde el centro?', 'Sí. La Recova está en el centro histórico de La Serena y se integra bien a un recorrido a pie por iglesias, plazas y museos cercanos.'],
+  ['¿Tiene estacionamiento propio?', 'No se identificó un estacionamiento exclusivo para visitantes en las fuentes consultadas. Conviene usar estacionamientos públicos del centro y respetar la señalización vial.'],
+  ['¿Los horarios pueden cambiar?', 'Sí. Los horarios publicados por plataformas y guías pueden variar por temporada, festivos o decisiones de los locatarios. Confirma antes de un viaje hecho especialmente para visitar el mercado.']
+];
+
+const opening = [
+  { dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '10:00', closes: '19:00' },
+  { dayOfWeek: ['Saturday','Sunday'], opens: '09:45', closes: '19:00' }
+];
+
+const attractionLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': ['TouristAttraction', 'LocalBusiness'],
+  name: 'La Recova de La Serena',
+  alternateName: 'Mercado La Recova de La Serena',
+  description: 'Mercado tradicional de artesanía, productos regionales y gastronomía en el centro histórico de La Serena, Chile.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Cienfuegos 563',
+    addressLocality: 'La Serena',
+    addressRegion: 'Coquimbo',
+    postalCode: '1700000',
+    addressCountry: 'CL'
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -29.9016128, longitude: -71.2463272 },
+  telephone: '+56 51 221 3888',
+  isAccessibleForFree: true,
+  priceRange: 'Entrada gratuita; compras y consumo por separado',
+  openingHoursSpecification: opening.map((o) => ({ '@type': 'OpeningHoursSpecification', ...o })),
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: 4.1, reviewCount: 22464, bestRating: 5, worstRating: 1 }
+};
+if (canonical) attractionLd.url = canonical;
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(([q,a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))
+};
+---
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>La Recova de La Serena | Artesanía, sabores y guía de visita</title>
+  <meta name="description" content="Guía independiente para visitar La Recova de La Serena: artesanía, gastronomía, cómo llegar, estacionamiento, horarios de referencia y lugares cercanos." />
+  <meta name="theme-color" content="#a94a36" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-16.png" sizes="16x16" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  {canonical && <link rel="canonical" href={canonical} />}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="La Recova de La Serena" />
+  <meta property="og:description" content="Artesanía, productos regionales y sabores del corazón histórico de La Serena." />
+  {canonical && <meta property="og:url" content={canonical} />}
+  {ogImage && <meta property="og:image" content={ogImage} />}
+  <meta property="og:locale" content="es_CL" />
+  <script type="application/ld+json" set:html={JSON.stringify(attractionLd)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HXM22WWPKP');
+  </script>
+</head>
+<body>
+  <header class="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-recova-ink/90 text-white backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
+      <a href="#inicio" class="flex items-center gap-3" aria-label="Inicio La Recova"><img src="/favicon.svg" alt="" class="h-10 w-10 rounded-xl"/><span class="font-display text-xl">La Recova</span></a>
+      <nav class="hidden gap-6 text-sm font-semibold md:flex"><a href="#visita" class="hover:text-recova-stone">Visita</a><a href="#sabores" class="hover:text-recova-stone">Sabores</a><a href="#alrededores" class="hover:text-recova-stone">Alrededores</a><a href="#fotos" class="hover:text-recova-stone">Fotos</a><a href="#faq" class="hover:text-recova-stone">FAQ</a></nav>
+      <a href="#mapa" class="rounded-full bg-recova-terracotta px-4 py-2 text-sm font-bold shadow-lg">Cómo llegar</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="relative min-h-[92vh] overflow-hidden bg-recova-ink pt-20 text-white">
+      <img src={photos[2].src} alt={photos[2].alt} class="absolute inset-0 h-full w-full object-cover opacity-65" fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-r from-recova-ink via-recova-ink/65 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-recova-ink via-transparent to-recova-ink/25"></div>
+      <div class="relative mx-auto flex min-h-[82vh] max-w-7xl items-end px-5 pb-16 lg:px-8 lg:pb-24">
+        <div class="max-w-3xl">
+          <p class="mb-4 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[.18em] backdrop-blur">Mercado tradicional · La Serena</p>
+          <h1 class="font-display text-5xl leading-[.95] sm:text-6xl lg:text-8xl">La Recova,<br/><span class="text-recova-stone">corazón hecho a mano</span></h1>
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 lg:text-xl">Entre arcos, patios y puestos familiares, este mercado reúne artesanía regional, dulces de papaya y sabores del norte chico en pleno centro histórico serenense.</p>
+          <div class="mt-8 flex flex-wrap gap-3"><a href="#visita" class="rounded-full bg-recova-terracotta px-6 py-3 font-bold">Planifica tu visita</a><a href="#fotos" class="rounded-full border border-white/30 bg-white/10 px-6 py-3 font-bold backdrop-blur">Ver fotos</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tile-pattern border-y border-recova-stone/40 bg-recova-cream py-6">
+      <div class="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-5 text-center md:grid-cols-4 lg:px-8">
+        <div><strong class="block font-display text-2xl text-recova-terracotta">143</strong><span class="text-sm">locales registrados históricamente</span></div>
+        <div><strong class="block font-display text-2xl text-recova-terracotta">Gratis</strong><span class="text-sm">entrada al mercado</span></div>
+        <div><strong class="block font-display text-2xl text-recova-terracotta">2 pisos</strong><span class="text-sm">artesanía + gastronomía</span></div>
+        <div><strong class="block font-display text-2xl text-recova-terracotta">Centro</strong><span class="text-sm">Cienfuegos 563</span></div>
+      </div>
+    </section>
+
+    <section class="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[1.1fr_.9fr] lg:px-8 lg:py-28">
+      <div><p class="section-kicker">La experiencia</p><h2 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Una visita para mirar, probar y conversar</h2><p class="mt-6 text-lg leading-8 text-recova-ink/75">La Recova funciona como mercado artesanal y gastronómico. La oferta tradicional incluye piezas en combarbalita, lapislázuli, cerámica de inspiración diaguita, textiles y productos de papaya, además de restaurantes de comida típica en el nivel superior.</p><p class="mt-4 leading-7 text-recova-ink/70">Más que una parada de compras, es un buen punto para entender el carácter comercial del centro histórico de La Serena y armar un paseo a pie por iglesias, museos y plazas cercanas.</p></div>
+      <figure class="arch-card min-h-[420px] bg-recova-stone"><img src={photos[1].src} alt={photos[1].alt} loading="lazy" decoding="async" class="h-full min-h-[420px] w-full object-cover"/><figcaption class="absolute bottom-3 left-3 rounded-full bg-recova-ink/75 px-3 py-1.5 text-xs text-white backdrop-blur">Productos regionales · foto real</figcaption></figure>
+    </section>
+
+    <section id="visita" class="bg-recova-ink py-20 text-white lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8"><p class="section-kicker !text-recova-stone">Planifica</p><h2 class="mt-3 max-w-3xl font-display text-4xl sm:text-5xl">Datos útiles, sin inventar certezas</h2><div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🎟️</span><h3 class="mt-5 font-display text-2xl">Entrada</h3><p class="mt-3 text-white/70">Acceso gratuito. Compras y consumos se pagan aparte.</p></article>
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">⏱️</span><h3 class="mt-5 font-display text-2xl">Tiempo sugerido</h3><p class="mt-3 text-white/70">45–90 min para recorrer; 1,5–2 h si sumas almuerzo.</p></article>
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🕙</span><h3 class="mt-5 font-display text-2xl">Horario de referencia</h3><p class="mt-3 text-white/70">Plataformas recientes publican alrededor de 10:00–19:00. Puede variar por local, temporada o festivo.</p></article>
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🅿️</span><h3 class="mt-5 font-display text-2xl">Estacionamiento</h3><p class="mt-3 text-white/70">No contamos con evidencia de estacionamiento propio. Prefiere opciones públicas del centro y revisa señalización.</p></article>
+      </div></div>
+    </section>
+
+    <section id="sabores" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr]"><div><p class="section-kicker">Sabores cercanos</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">Comer con contexto local</h2><p class="mt-5 leading-7 text-recova-ink/70">En el segundo piso del propio mercado hay restaurantes y cocina típica. Para seguir caminando por el centro, una alternativa conocida es Donde El Guatón, en Brasil 750, con parrilla, platos chilenos y mariscos.</p></div><div class="grid gap-4 sm:grid-cols-2"><article class="rounded-3xl bg-recova-cream p-7"><p class="section-kicker">Dentro del mercado</p><h3 class="mt-2 font-display text-3xl">Segundo piso de La Recova</h3><p class="mt-3 text-recova-ink/70">Ideal para probar pescados, mariscos y preparaciones tradicionales sin salir del recorrido.</p></article><article class="rounded-3xl bg-recova-terracotta p-7 text-white"><p class="text-xs font-bold uppercase tracking-[.15em] text-white/70">A pocos minutos del centro</p><h3 class="mt-2 font-display text-3xl">Donde El Guatón</h3><p class="mt-3 text-white/75">Restaurante chileno en Brasil 750, práctico para combinar mercado + almuerzo.</p></article></div></div></section>
+
+    <section id="mapa" class="bg-recova-cream py-20 lg:py-28"><div class="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[.8fr_1.2fr] lg:px-8"><div><p class="section-kicker">Transporte detallado</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">En pleno centro histórico</h2><div class="mt-6 space-y-5 text-recova-ink/75"><p><strong class="text-recova-ink">A pie:</strong> desde la Plaza de Armas, recorre el centro hacia Cienfuegos/Cantournet. Es una zona cómoda para enlazar varias visitas caminando.</p><p><strong class="text-recova-ink">Transporte público:</strong> distintas líneas circulan por calles del centro; las rutas y paraderos pueden cambiar, por lo que conviene verificar el trayecto el mismo día.</p><p><strong class="text-recova-ink">Auto:</strong> considera que el centro puede tener alta demanda de estacionamiento. No asumas que el mercado dispone de estacionamiento propio.</p></div><a href="https://maps.app.goo.gl/Y37TvRasJHfBQmFW6" rel="noopener noreferrer" class="mt-7 inline-flex rounded-full bg-recova-terracotta px-5 py-3 font-bold text-white">Abrir en Google Maps</a></div><div class="overflow-hidden rounded-[2rem] border border-recova-stone bg-white shadow-xl"><iframe title="Mapa de La Recova de La Serena" src="https://www.google.com/maps?q=La%20Recova%2C%20Cienfuegos%20563%2C%20La%20Serena%2C%20Chile&output=embed&hl=es-CL" width="100%" height="520" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div></section>
+
+    <section id="alrededores" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><p class="section-kicker">Alrededores</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">Tres paradas para seguir a pie</h2><div class="mt-10 grid gap-5 md:grid-cols-3"><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Centro histórico</span><h3 class="mt-3 font-display text-2xl">Museo Arqueológico de La Serena</h3><p class="mt-3 text-recova-ink/70">Una continuación natural para conocer culturas prehispánicas y patrimonio regional.</p></article><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Paseo urbano</span><h3 class="mt-3 font-display text-2xl">Plaza de Armas</h3><p class="mt-3 text-recova-ink/70">El corazón cívico del casco histórico, rodeado de arquitectura y servicios.</p></article><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Patrimonio religioso</span><h3 class="mt-3 font-display text-2xl">Catedral de La Serena</h3><p class="mt-3 text-recova-ink/70">Una de las iglesias más reconocibles del circuito patrimonial del centro.</p></article></div></section>
+
+    <section class="bg-recova-terracotta py-20 text-white"><div class="mx-auto max-w-7xl px-5 lg:px-8"><div class="grid gap-8 lg:grid-cols-2"><div><p class="text-xs font-bold uppercase tracking-[.16em] text-white/70">Mejor momento</p><h2 class="mt-3 font-display text-4xl">Ve cuando el mercado esté vivo, no con prisa</h2></div><div class="grid gap-4 sm:grid-cols-2"><div class="rounded-3xl bg-white/10 p-6"><strong class="font-display text-2xl">Mañana / mediodía</strong><p class="mt-2 text-white/75">Suele ser una franja práctica para encontrar más puestos activos y enlazar con almuerzo.</p></div><div class="rounded-3xl bg-white/10 p-6"><strong class="font-display text-2xl">45–120 min</strong><p class="mt-2 text-white/75">El rango depende de cuánto quieras comprar, conversar con locatarios o comer.</p></div></div></div></div></section>
+
+    <section id="fotos" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div class="flex flex-wrap items-end justify-between gap-5"><div><p class="section-kicker">Fotos reales</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">La Recova en imágenes</h2></div><p class="max-w-xl text-sm leading-6 text-recova-ink/65">Imágenes documentales de Wikimedia Commons y Chile Travel. Haz clic para ampliar; los créditos y licencias se indican en cada imagen.</p></div><div class="mt-10 grid auto-rows-[240px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {photos.map((photo, index) => <button class:list={["gallery-button group relative overflow-hidden rounded-3xl text-left", index===0 && "sm:col-span-2 lg:row-span-2", index===3 && "lg:col-span-2"]} data-photo={photo.src} data-alt={photo.alt}><img src={photo.src} alt={photo.alt} loading={index===0 ? 'eager':'lazy'} decoding="async" class="h-full w-full object-cover"/><span class="absolute inset-x-3 bottom-3 rounded-2xl bg-recova-ink/75 px-3 py-2 text-xs text-white backdrop-blur">{photo.credit}</span></button>)}
+    </div><div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-recova-ink/60">{photos.map((p) => <a href={p.source} rel="noopener noreferrer" target="_blank" class="underline decoration-recova-stone underline-offset-4">Fuente: {p.credit}</a>)}</div></section>
+
+    <section id="faq" class="bg-recova-cream py-20 lg:py-28"><div class="mx-auto max-w-4xl px-5 lg:px-8"><p class="section-kicker">FAQ</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">Preguntas antes de ir</h2><div class="mt-8 divide-y divide-recova-stone/60 border-y border-recova-stone/60">{faq.map(([q,a]) => <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-5 font-bold"><span>{q}</span><span class="text-2xl text-recova-terracotta transition group-open:rotate-45">+</span></summary><p class="max-w-3xl pt-3 leading-7 text-recova-ink/70">{a}</p></details>)}</div></div></section>
+  </main>
+
+  <footer class="bg-recova-ink px-5 py-12 text-white"><div class="mx-auto flex max-w-7xl flex-col gap-7 lg:px-3"><img src="/logo.svg" alt="La Recova La Serena" class="h-auto w-52 rounded-2xl"/><div class="flex flex-wrap gap-5 text-sm text-white/65"><a href="#inicio">Inicio</a><a href="#visita">Planifica</a><a href="#fotos">Fotos</a><a href="#faq">FAQ</a></div><p class="max-w-3xl text-xs leading-5 text-white/50">Sitio informativo independiente y no oficial; no representa a la Municipalidad de La Serena, a la administración del mercado ni a sus locatarios. Horarios, comercios y servicios pueden cambiar.</p></div></footer>
+
+  <dialog id="lightbox" class="m-auto max-h-[92vh] max-w-[94vw] overflow-hidden rounded-3xl bg-recova-ink p-0 backdrop:bg-black/80"><button id="lightbox-close" class="absolute right-3 top-3 z-10 h-11 w-11 rounded-full bg-white/90 text-xl font-bold text-recova-ink" aria-label="Cerrar imagen">×</button><img id="lightbox-img" src="" alt="" class="max-h-[88vh] max-w-[92vw] object-contain"/></dialog>
+  <script>
+    const dialog = document.querySelector<HTMLDialogElement>('#lightbox');
+    const image = document.querySelector<HTMLImageElement>('#lightbox-img');
+    document.querySelectorAll<HTMLButtonElement>('[data-photo]').forEach((button) => button.addEventListener('click', () => {
+      if (!dialog || !image) return;
+      image.src = button.dataset.photo ?? '';
+      image.alt = button.dataset.alt ?? '';
+      dialog.showModal();
+    }));
+    document.querySelector<HTMLButtonElement>('#lightbox-close')?.addEventListener('click', () => dialog?.close());
+    dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  </script>
+</body>
+</html>

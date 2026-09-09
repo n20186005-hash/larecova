@@ -3,7 +3,7 @@ import '../styles/global.css';
 
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
-const ogImage = site ? new URL('/logo.svg', site).href : undefined;
+const ogImage = site ? new URL('/images/la-recova-plaza-entrada.jpg', site).href : undefined;
 
 const photos = [
   {
@@ -38,7 +38,9 @@ const faq = [
   ['¿Cuánto tiempo debería reservar?', 'Para una visita centrada en artesanías, calcula entre 45 y 90 minutos. Si vas a almorzar o recorrer con calma el segundo piso, reserva alrededor de 1,5 a 2 horas.'],
   ['¿Se puede llegar caminando desde el centro?', 'Sí. La Recova está en el centro histórico de La Serena y se integra bien a un recorrido a pie por iglesias, plazas y museos cercanos.'],
   ['¿Tiene estacionamiento propio?', 'No se identificó un estacionamiento exclusivo para visitantes en las fuentes consultadas. Conviene usar estacionamientos públicos del centro y respetar la señalización vial.'],
-  ['¿Los horarios pueden cambiar?', 'Sí. Los horarios publicados por plataformas y guías pueden variar por temporada, festivos o decisiones de los locatarios. Confirma antes de un viaje hecho especialmente para visitar el mercado.']
+  ['¿Los horarios pueden cambiar?', 'Sí. Los horarios publicados por plataformas y guías pueden variar por temporada, festivos o decisiones de los locatarios. Confirma antes de un viaje hecho especialmente para visitar el mercado.'],
+  ['¿Venden productos de alpaca?', 'Sí. Destacan tejidos y productos elaborados con fibra de alpaca, artesanías regionales y recuerdos del norte de Chile.'],
+  ['¿Dónde queda y cómo se llega?', 'Queda en Cienfuegos 563, en el centro histórico de La Serena (Coquimbo, Chile). Es un destino turístico y guía de visita abierta al público; mira el mapa de esta página para ubicarlo.']
 ];
 
 const opening = [
@@ -49,9 +51,11 @@ const opening = [
 const attractionLd: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': ['TouristAttraction', 'LocalBusiness'],
+  '@id': 'https://larecova.org/#attraction',
   name: 'La Recova de La Serena',
-  alternateName: 'Mercado La Recova de La Serena',
+  alternateName: ['La Recova', 'Mercado La Recova de La Serena'],
   description: 'Mercado tradicional de artesanía, productos regionales y gastronomía en el centro histórico de La Serena, Chile.',
+  image: [ogImage || 'https://larecova.org/images/la-recova-plaza-entrada.jpg'],
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Cienfuegos 563',
@@ -62,6 +66,8 @@ const attractionLd: Record<string, unknown> = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: -29.9016128, longitude: -71.2463272 },
   telephone: '+56 51 221 3888',
+  hasMap: 'https://maps.app.goo.gl/Y37TvRasJHfBQmFW6',
+  sameAs: ['https://maps.app.goo.gl/Y37TvRasJHfBQmFW6', 'https://www.chile.travel/'],
   isAccessibleForFree: true,
   priceRange: 'Entrada gratuita; compras y consumo por separado',
   openingHoursSpecification: opening.map((o) => ({ '@type': 'OpeningHoursSpecification', ...o })),
@@ -74,14 +80,22 @@ const faqLd = {
   '@type': 'FAQPage',
   mainEntity: faq.map(([q,a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))
 };
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: site ? new URL('/', site).href : undefined },
+    { '@type': 'ListItem', position: 2, name: 'La Recova de La Serena', item: canonical }
+  ]
+};
 ---
 <!doctype html>
 <html lang="es-CL">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>La Recova de La Serena | Artesanía, sabores y guía de visita</title>
-  <meta name="description" content="Guía independiente para visitar La Recova de La Serena: artesanía, gastronomía, cómo llegar, estacionamiento, horarios de referencia y lugares cercanos." />
+  <title>La Recova de La Serena (La Serena, Chile) - Mercado artesanal: guía y mapa de visita</title>
+  <meta name="description" content="Guía para visitar La Recova de La Serena (La Serena, Coquimbo, Chile): mapa, horarios de referencia, artesanía y cómo llegar a Cienfuegos 563." />
   <meta name="theme-color" content="#a94a36" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-16.png" sizes="16x16" />
@@ -89,13 +103,17 @@ const faqLd = {
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
   {canonical && <link rel="canonical" href={canonical} />}
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="La Recova de La Serena" />
-  <meta property="og:description" content="Artesanía, productos regionales y sabores del corazón histórico de La Serena." />
+  <meta property="og:title" content="La Recova de La Serena - La Serena Travel Guide" />
+  <meta property="og:description" content="Guía de visita a La Recova de La Serena, el mercado artesanal del centro histórico de La Serena, Coquimbo, Chile." />
   {canonical && <meta property="og:url" content={canonical} />}
   {ogImage && <meta property="og:image" content={ogImage} />}
+  <meta property="og:image:alt" content="La Recova de La Serena en La Serena, Chile" />
   <meta property="og:locale" content="es_CL" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json" set:html={JSON.stringify(attractionLd)}></script>
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)}></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
   <script is:inline>
     window.dataLayer = window.dataLayer || [];

@@ -4,14 +4,14 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // ÚNICO punto de configuración del dominio.
-// Déjalo vacío para compilar sin dominio; al publicar define SITE con la URL canónica.
-const site = process.env.SITE?.trim() || undefined;
+// Precedencia: variable de entorno SITE (builds de staging/CI) > dominio canónico.
+const site = process.env.SITE?.trim() || 'https://larecova.org';
 
 export default defineConfig({
   site,
   output: 'server',
   adapter: cloudflare(),
-  integrations: site ? [sitemap()] : [],
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()]
   }

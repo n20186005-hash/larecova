@@ -1,0 +1,28 @@
+{
+  "name": "La Recova La Serena — Guía de visita",
+  "short_name": "La Recova",
+  "description": "Horario, dirección y cómo llegar a La Recova de La Serena, mercado artesanal de Cienfuegos 563.",
+  "lang": "es-CL",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fffaf1",
+  "theme_color": "#a94a36",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

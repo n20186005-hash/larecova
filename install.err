@@ -1,0 +1,2 @@
+[ERROR] [safe-delete] 操作失败: spawnSync C:\Users\dcc\AppData\Local\Programs\CodeBuddy CN\resources\app\extensions\genie\out\vendor\genie-trash\win32-x64.exe ETIMEDOUT
+For help, run: pnpm help install

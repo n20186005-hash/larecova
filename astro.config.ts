@@ -10,8 +10,8 @@ const site = process.env.SITE?.trim() || 'https://larecova.org';
 export default defineConfig({
   site,
   output: 'server',
-  adapter: cloudflare(),
-  integrations: [sitemap()],
+  adapter: cloudflare({ configPath: './wrangler.jsonc' }),
+  integrations: [sitemap({ filter: (url) => !new URL(url).pathname.startsWith('/404') })],
   vite: {
     plugins: [tailwindcss()]
   }

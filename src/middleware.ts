@@ -1,10 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
 
-/**
- * El dominio se concentra en https://larecova.org.
- * Search Console muestra las cuatro variantes (http/https × con y sin www)
- * indexadas por separado, por lo que se redirigen aquí con 301 permanente.
- */
+/** Cabeceras de las respuestas servidas por Astro. La entrada Worker aplica la normalización del dominio antes del adaptador. */
 const CANONICAL_HOST = 'larecova.org';
 
 const SECURITY_HEADERS: Record<string, string> = {

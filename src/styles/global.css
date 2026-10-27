@@ -24,3 +24,10 @@ body { margin: 0; font-family: var(--font-sans); color: #211b17; background: #ff
 .gallery-button img { transition: transform .45s ease, filter .45s ease; }
 .gallery-button:hover img { transform: scale(1.035); filter: saturate(1.08); }
 summary::-webkit-details-marker { display:none; }
+
+main .grid > * { min-width: 0; }
+.font-display, .source-list { overflow-wrap: anywhere; }
+.hours-table { table-layout: fixed; }
+.hours-table th, .hours-table td { overflow-wrap: anywhere; vertical-align: top; padding-right: .75rem; }
+iframe { max-width: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

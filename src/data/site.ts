@@ -1,6 +1,6 @@
 /**
  * Fuente única de los datos del establecimiento y del nombre SEO del sitio.
- * Cifras del perfil público de Google Maps revisadas en septiembre de 2026.
+ * Datos públicos de Google Maps consultados el 26 de octubre de 2026.
  * No inventar horarios, teléfonos ni servicios que no provengan de esta ficha.
  */
 
@@ -38,41 +38,22 @@ export const ATTRACTION = {
   longitude: -71.2463272,
   plusCode: '3QX3+9F La Serena, Chile',
   googleMapsUrl: 'https://maps.app.goo.gl/Y37TvRasJHfBQmFW6',
-  sameAs: ['https://maps.app.goo.gl/Y37TvRasJHfBQmFW6', 'https://www.chile.travel/'],
+  sameAs: ['https://maps.app.goo.gl/Y37TvRasJHfBQmFW6'],
   /** Valoración pública (Google Maps); se muestra siempre con su salvedad. */
   ratingValue: 4.1,
-  reviewCount: 22485,
-  ratingSnapshot: 'Google Maps, septiembre de 2026',
-  isAccessibleForFree: true,
-  priceRange: 'Entrada gratuita; compras y consumo por separado'
+  reviewCount: 22503,
+  ratingSnapshot: 'Google Maps, 26 de octubre de 2026'
 } as const;
 
-/**
- * Horario de referencia obtenido de plataformas de viaje. Puede variar por
- * local, temporada o festivo: nunca se presenta como horario oficial.
- */
-export const OPENING_HOURS_SPEC = [
-  {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '10:00',
-    closes: '19:00'
-  },
-  {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Saturday', 'Sunday'],
-    opens: '09:45',
-    closes: '19:00'
-  }
-];
-
+/** Fuentes con fechas y alcance distintos; no constituyen un horario unificado. */
 export const OPENING_HOURS_ROWS = [
-  { label: 'Lunes a viernes', value: '10:00 – 19:00' },
-  { label: 'Sábados, domingos y festivos', value: '09:45 – 19:00' }
+  { label: 'Maps · 26–30 octubre 2026', value: '10:00–19:00' },
+  { label: 'Maps · sábado 31 octubre', value: '09:45–19:00; aviso de festivo' },
+  { label: 'Maps · domingo 1 noviembre', value: 'Cerrado; aviso de Todos los Santos' },
+  { label: 'SERNATUR · página Vida Urbana, sin fecha de actualización visible', value: 'Martes–viernes 10:30–19:00; sábados–domingos 10:30–14:30' },
+  { label: 'SERNATUR · reporte de junio de 2026', value: 'Martes–viernes 10:30–18:00; sábados 10:30–14:30' }
 ] as const;
-
-export const OPENING_HOURS_NOTE =
-  'Horario de referencia tomado de plataformas de viaje: cada local puede abrir o cerrar en otro horario y las horas cambian en temporada alta y festivos.';
+export const OPENING_HOURS_NOTE = 'Fuentes consultadas el 26 de octubre de 2026. Los horarios difieren: la semana mostrada por Maps incluye festivos y no demuestra que todos los domingos esté cerrado. Confirma la fecha y los locales que quieres visitar; no se ofrece una garantía de acceso o servicio.';
 
 export function withSiteName(page?: string): string {
   return page ? `${page} | ${SITE_NAME}` : SITE_NAME;

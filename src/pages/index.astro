@@ -5,7 +5,6 @@ import {
   DOMAIN_URL,
   OPENING_HOURS_NOTE,
   OPENING_HOURS_ROWS,
-  OPENING_HOURS_SPEC,
   SITE_NAME
 } from '../data/site';
 
@@ -17,49 +16,25 @@ const ratingLabel = ATTRACTION.ratingValue.toString().replace('.', ',');
 const reviewLabel = ATTRACTION.reviewCount.toLocaleString('es-CL');
 
 const photos = [
-  {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Explanada_de_ingreso_a_La_Recova.jpg',
-    alt: 'Explanada y entorno histórico de La Recova en La Serena',
-    credit: 'Nicolescribe · CC BY-SA 4.0',
-    source: 'https://commons.wikimedia.org/wiki/File:Explanada_de_ingreso_a_La_Recova.jpg'
-  },
-  {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/4/47/Tienda_de_productos_artesanales_en_La_Recova.jpg',
-    alt: 'Puesto de productos y artesanías regionales en La Recova',
-    credit: 'Nicolescribe · CC BY-SA 4.0',
-    source: 'https://commons.wikimedia.org/wiki/File:Tienda_de_productos_artesanales_en_La_Recova.jpg'
-  },
-  {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Wiki_Tour_-_Recova.JPG',
-    alt: 'Fachada y paseo exterior de La Recova de La Serena',
-    credit: 'Nereidas · CC BY-SA 3.0',
-    source: 'https://commons.wikimedia.org/wiki/File:Wiki_Tour_-_Recova.JPG'
-  },
-  {
-    src: 'https://storage.googleapis.com/chile-travel-static-content/2019/10/La-Recova-ok.jpg',
-    alt: 'Patio interior con puestos de artesanía de La Recova',
-    credit: 'Chile Travel',
-    source: 'https://www.chile.travel/'
-  }
+  { src: '/images/la-recova-plaza-entrada.jpg', alt: 'Vista histórica de la explanada de La Recova, La Serena, fotografiada en enero de 2025', credit: 'Nicolescribe · 7 enero 2025', license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', source: 'https://commons.wikimedia.org/wiki/File:Explanada_de_ingreso_a_La_Recova.jpg' },
+  { src: '/images/la-recova-productos-artesanales.jpg', alt: 'Puesto de productos de La Recova fotografiado en enero de 2025; los precios y artículos no representan una oferta actual', credit: 'Nicolescribe · 7 enero 2025', license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', source: 'https://commons.wikimedia.org/wiki/File:Tienda_de_productos_artesanales_en_La_Recova.jpg' },
+  { src: '/images/la-recova-vista-exterior.jpg', alt: 'Vista exterior histórica de La Recova, La Serena, fotografiada en febrero de 2013', credit: 'Nereidas · 24 febrero 2013', license: 'CC BY-SA 3.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/', source: 'https://commons.wikimedia.org/wiki/File:Wiki_Tour_-_Recova.JPG' }
 ];
-
 const faq = [
-  ['¿Cuál es el horario de La Recova?', 'El horario de referencia difundido en plataformas de viaje es de 10:00 a 19:00 de lunes a viernes y de 09:45 a 19:00 los sábados y domingos. Cada local abre por su cuenta y las horas cambian en temporada alta y festivos: si vas especialmente para visitar el mercado, confirma antes.'],
-  ['¿Cuál es la dirección exacta y cómo se llega?', 'Cienfuegos 563, 1700000 La Serena, Región de Coquimbo, Chile. Está en el casco histórico, a pocas cuadras de la Plaza de Armas, y se llega caminando por el centro; en esta página tienes el mapa y el enlace directo para abrir la ruta.'],
-  ['¿Tiene teléfono de contacto?', 'El número publicado en su ficha pública es +56 51 221 3888. Úsalo para consultar disponibilidad de locales y horarios puntuales.'],
-  ['¿La entrada a La Recova es gratuita?', 'Sí. No se cobra entrada para recorrer el mercado; las compras, comidas y otros consumos se pagan por separado.'],
-  ['¿Se puede llegar caminando desde el centro?', 'Sí. La Recova está en el centro histórico de La Serena y se integra bien a un recorrido a pie por iglesias, plazas y museos cercanos.'],
-  ['¿Cómo llegar desde Plaza de Armas?', 'Camina hacia Cienfuegos/Cantournet dentro del casco histórico: el trayecto se hace en pocos minutos y pasa por comercio y arquitectura patrimonial.'],
-  ['¿Hay estacionamiento propio?', 'No se identificó un estacionamiento exclusivo para visitantes en las fuentes consultadas. Conviene usar estacionamientos públicos del centro y respetar la señalización vial.'],
-  ['¿Qué conviene comprar?', 'Son característicos los productos de papaya, artesanías en piedra combarbalita, cerámica de inspiración diaguita, tejidos, joyería y recuerdos regionales.'],
-  ['¿Cuánto tiempo debería reservar?', 'Para una visita centrada en artesanías, calcula entre 45 y 90 minutos. Si vas a almorzar o recorrer con calma el segundo piso, reserva alrededor de 1,5 a 2 horas.'],
-  ['¿Los horarios pueden cambiar?', 'Sí. Los horarios publicados por plataformas y guías pueden variar por temporada, festivos o decisiones de los locatarios. Confirma antes de un viaje hecho especialmente para visitar el mercado.'],
-  ['¿Venden productos de alpaca?', 'Sí. Destacan tejidos y productos elaborados con fibra de alpaca, artesanías regionales y recuerdos del norte de Chile.']
+  ['¿Qué horario tiene La Recova?', 'Las fuentes no coinciden. Maps mostró la semana del 26 de octubre al 1 de noviembre de 2026, con avisos de festivos; SERNATUR publica otras franjas. Compara la tabla y confirma tu fecha, sin convertir el cierre de ese domingo en una regla para todo el año.'],
+  ['¿Dónde está La Recova de La Serena?', 'La ficha de Maps consultada el 26 de octubre de 2026 indica Cienfuegos 563, La Serena, Coquimbo, Chile; punto -29.9016128, -71.2463272. Las fuentes regionales la sitúan en Cienfuegos esquina Cantournet.'],
+  ['¿De dónde procede el teléfono?', 'El +56 51 221 3888 aparece en la ficha pública de Maps consultada en esa fecha. No se ha confirmado de forma independiente como contacto vigente de la administración o de un local concreto.'],
+  ['¿Se cobra entrada?', 'No se verificó una tarifa o política general de entrada actual. La casilla de precio de La Recova en el reporte regional de junio de 2026 está vacía; eso no demuestra gratuidad. Las compras y comidas tienen sus propias condiciones.'],
+  ['¿Cómo puedo llegar caminando?', 'Depende del origen y de los cruces habilitados. Usa el mapa para elegir el trayecto real y considera superficies, movilidad y restricciones; no se promete un tiempo fijo ni una ruta accesible continua.'],
+  ['¿Hay estacionamiento propio?', 'No se ha verificado un estacionamiento exclusivo vigente. Revisa la señalización y acuerda un lugar legal para estacionar o bajar del vehículo.'],
+  ['¿Qué puedo buscar en el mercado?', 'El portal regional describe artesanía, frutos y restaurantes turísticos, y destaca las papayas en almíbar. Para una compra concreta pregunta por material, procedencia, precio y condiciones al vendedor; no se garantiza stock actual.'],
+  ['¿Cuánto tiempo conviene reservar?', 'Decide si quieres mirar artesanía, hacer una compra concreta o comer. Ajusta el tiempo a los locales abiertos, tu ritmo y el regreso; este sitio no establece una duración de recorrido.'],
+  ['¿Las fotografías muestran los locales actuales?', 'No necesariamente. Son fotografías de 2013 y 2025: documentan escenas anteriores, no un directorio comercial, menú, precio o programación vigente. Cada una incluye autor, fecha, fuente y licencia.']
 ];
 
 const attractionLd: Record<string, unknown> = {
   '@context': 'https://schema.org',
-  '@type': ['TouristAttraction', 'LocalBusiness'],
+  '@type': ['TouristAttraction', 'Place'],
   '@id': `${DOMAIN_URL}/#attraction`,
   name: ATTRACTION.name,
   alternateName: [...ATTRACTION.alternateName],
@@ -74,19 +49,12 @@ const attractionLd: Record<string, unknown> = {
     addressCountry: ATTRACTION.addressCountry
   },
   geo: { '@type': 'GeoCoordinates', latitude: ATTRACTION.latitude, longitude: ATTRACTION.longitude },
-  telephone: ATTRACTION.telephone,
   hasMap: ATTRACTION.googleMapsUrl,
   sameAs: [...ATTRACTION.sameAs],
-  isAccessibleForFree: ATTRACTION.isAccessibleForFree,
-  priceRange: ATTRACTION.priceRange,
-  openingHoursSpecification: OPENING_HOURS_SPEC,
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: ATTRACTION.ratingValue,
-    reviewCount: ATTRACTION.reviewCount,
-    bestRating: 5,
-    worstRating: 1
-  }
+  subjectOf: [
+    { '@type': 'WebPage', url: 'https://turismoregiondecoquimbo.cl/vida-urbana/' },
+    { '@type': 'WebPage', url: 'https://transparencia.laserena.cl/documentos/doc_34_2310_02092015024606.pdf' }
+  ]
 };
 if (canonical) attractionLd.url = canonical;
 
@@ -119,8 +87,8 @@ const websiteLd = {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>La Recova La Serena — Guía de visita: horario, cómo llegar y qué comprar</title>
-  <meta name="description" content="Horario, dirección (Cienfuegos 563) y cómo llegar a La Recova de La Serena, mercado artesanal: papaya, combarbalita y gastronomía local." />
+  <title>La Recova La Serena: horarios por fuente, mapa y mercado artesanal</title>
+  <meta name="description" content="La Recova de La Serena en Cienfuegos 563: compara horarios publicados, ubica el mercado y conoce su historia, artesanía y fotografías con fuentes." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#a94a36" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -130,8 +98,8 @@ const websiteLd = {
   {canonical && <link rel="canonical" href={canonical} />}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content={SITE_NAME} />
-  <meta property="og:title" content="La Recova La Serena — Mercado artesanal: horario, ubicación y cómo llegar" />
-  <meta property="og:description" content="Mercado La Recova en Cienfuegos 563, La Serena: horario de referencia, artesanía regional, gastronomía, teléfono y mapa para planificar la visita." />
+  <meta property="og:title" content="La Recova La Serena: mercado artesanal, horarios y ubicación" />
+  <meta property="og:description" content="Mercado La Recova en Cienfuegos 563: fuentes de horarios que difieren, historia documentada, artesanía y mapa para planificar tu visita." />
   {canonical && <meta property="og:url" content={canonical} />}
   {ogImage && <meta property="og:image" content={ogImage} />}
   <meta property="og:image:alt" content="La Recova de La Serena en La Serena, Chile" />
@@ -167,19 +135,20 @@ const websiteLd = {
       <div class="relative mx-auto flex min-h-[82vh] max-w-7xl items-end px-5 pb-16 lg:px-8 lg:pb-24">
         <div class="max-w-3xl">
           <p class="mb-4 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[.18em] backdrop-blur">Mercado tradicional · La Serena · Coquimbo</p>
-          <h1 class="font-display text-5xl leading-[.95] sm:text-6xl lg:text-8xl">La Recova de La Serena,<br/><span class="text-recova-stone">corazón hecho a mano</span></h1>
-          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 lg:text-xl">Entre arcos, patios y puestos familiares, este mercado reúne artesanía regional, dulces de papaya y sabores del norte chico en pleno centro histórico serenense.</p>
-          <p class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold text-white/90"><span class="rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">Horario de referencia: 10:00 – 19:00</span><span class="rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">Entrada gratuita</span><span class="rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">Cienfuegos 563</span></p>
+          <h1 class="font-display text-5xl leading-[.95] sm:text-6xl lg:text-8xl">La Recova de La Serena,<br/><span class="text-recova-stone">mercado de artesanía y sabores</span></h1>
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 lg:text-xl">Entre arcos, patios y puestos, este mercado reúne artesanía regional, dulces de papaya y sabores del norte chico en pleno centro histórico serenense.</p>
+          <p class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold text-white/90"><span class="rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">Horarios: compara las fuentes</span><span class="rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">Visita según la fecha</span><span class="rounded-full bg-white/10 px-3 py-1.5 backdrop-blur">Cienfuegos 563</span></p>
           <div class="mt-8 flex flex-wrap gap-3"><a href="#visita" class="rounded-full bg-recova-terracotta px-6 py-3 font-bold">Planifica tu visita</a><a href="#horario" class="rounded-full border border-white/30 bg-white/10 px-6 py-3 font-bold backdrop-blur">Horario y cómo llegar</a></div>
         </div>
       </div>
+      <p class="relative mx-auto max-w-7xl px-5 pb-5 text-xs text-white/80 lg:px-8">Foto histórica: {photos[2].credit} · <a href={photos[2].source} class="underline">Commons</a> · <a href={photos[2].licenseUrl} class="underline">{photos[2].license}</a></p>
     </section>
 
     <section class="tile-pattern border-y border-recova-stone/40 bg-recova-cream py-6">
       <div class="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-5 text-center md:grid-cols-4 lg:px-8">
-        <div><strong class="block font-display text-2xl text-recova-terracotta">143</strong><span class="text-sm">locales registrados históricamente</span></div>
-        <div><strong class="block font-display text-2xl text-recova-terracotta">Gratis</strong><span class="text-sm">entrada al mercado</span></div>
-        <div><strong class="block font-display text-2xl text-recova-terracotta">2 pisos</strong><span class="text-sm">artesanía + gastronomía</span></div>
+        <div><strong class="block font-display text-2xl text-recova-terracotta">1981</strong><span class="text-sm">reinauguración según decreto municipal de 2015</span></div>
+        <div><strong class="block font-display text-2xl text-recova-terracotta">143</strong><span class="text-sm">locales citados en ese documento, no un conteo actual</span></div>
+        <div><strong class="block font-display text-2xl text-recova-terracotta">Fuentes</strong><span class="text-sm">horarios distintos; consulta tu fecha</span></div>
         <div><strong class="block font-display text-2xl text-recova-terracotta">Centro</strong><span class="text-sm">Cienfuegos 563</span></div>
       </div>
     </section>
@@ -188,13 +157,13 @@ const websiteLd = {
       <div class="mx-auto max-w-7xl px-5 lg:px-8">
         <p class="section-kicker">Horario, dirección y contacto</p>
         <h2 class="mt-3 max-w-3xl font-display text-4xl sm:text-5xl">Horario de La Recova y cómo llegar a Cienfuegos 563</h2>
-        <p class="mt-5 max-w-3xl leading-7 text-recova-ink/70">El mercado está en el casco histórico de La Serena (Región de Coquimbo): se llega caminando desde la Plaza de Armas y estos son los datos de contacto publicados en su ficha pública.</p>
+        <p class="mt-5 max-w-3xl leading-7 text-recova-ink/70">La Recova está en el centro de La Serena. La ficha pública y las fuentes regionales coinciden en el entorno de Cienfuegos y Cantournet, pero sus horarios no coinciden. Las referencias siguientes mantienen sus fechas y alcance.</p>
         <div class="mt-10 grid gap-6 lg:grid-cols-[.95fr_1.05fr]">
           <article class="rounded-3xl border border-recova-stone bg-recova-cream p-7">
             <h3 class="font-display text-2xl">Horario de referencia</h3>
-            <table class="mt-5 w-full text-left text-sm">
+            <table class="hours-table mt-5 w-full text-left text-sm">
               <caption class="sr-only">Horario de referencia de La Recova de La Serena</caption>
-              <thead class="text-recova-ink/60"><tr><th scope="col" class="pb-2 font-semibold">Días</th><th scope="col" class="pb-2 font-semibold">Horario</th></tr></thead>
+              <thead class="text-recova-ink/60"><tr><th scope="col" class="pb-2 font-semibold">Fuente y fecha</th><th scope="col" class="pb-2 font-semibold">Información publicada</th></tr></thead>
               <tbody class="divide-y divide-recova-stone/60">{OPENING_HOURS_ROWS.map((row) => <tr><td class="py-3">{row.label}</td><td class="py-3 font-bold text-recova-terracotta">{row.value}</td></tr>)}</tbody>
             </table>
             <p class="mt-5 text-sm leading-6 text-recova-ink/65">{OPENING_HOURS_NOTE}</p>
@@ -208,9 +177,9 @@ const websiteLd = {
             </article>
             <article class="rounded-3xl border border-recova-stone bg-white p-6">
               <h3 class="font-display text-2xl">Contacto y acceso</h3>
-              <p class="mt-3 leading-7 text-recova-ink/70">Teléfono publicado:<br /><a href={ATTRACTION.telephoneHref} class="font-bold text-recova-terracotta underline decoration-recova-stone underline-offset-4">{ATTRACTION.telephone}</a></p>
-              <p class="mt-4 leading-7 text-recova-ink/70">Entrada gratuita; compras y consumo se pagan aparte.</p>
-              <p class="mt-4 text-sm text-recova-ink/60">Valoración pública {ratingLabel}/5 · {reviewLabel} opiniones ({ATTRACTION.ratingSnapshot}). Cifra orientativa, no verificada por este sitio.</p>
+              <p class="mt-3 leading-7 text-recova-ink/70">Teléfono en Maps · 26 octubre 2026:<br /><a href={ATTRACTION.telephoneHref} class="font-bold text-recova-terracotta underline decoration-recova-stone underline-offset-4">{ATTRACTION.telephone}</a></p>
+              <p class="mt-4 leading-7 text-recova-ink/70">No se ha verificado una política general de acceso gratuito. Consulta por separado las condiciones de la compra, la comida y cualquier actividad.</p>
+              <p class="mt-4 text-sm text-recova-ink/60">Valoración pública {ratingLabel}/5 · {reviewLabel} opiniones ({ATTRACTION.ratingSnapshot}). Valoración de terceros, no propia de esta guía.</p>
             </article>
           </div>
         </div>
@@ -218,30 +187,32 @@ const websiteLd = {
     </section>
 
     <section class="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[1.1fr_.9fr] lg:px-8 lg:py-28">
-      <div><p class="section-kicker">La experiencia</p><h2 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Una visita para mirar, probar y conversar</h2><p class="mt-6 text-lg leading-8 text-recova-ink/75">La Recova funciona como mercado artesanal y gastronómico. La oferta tradicional incluye piezas en combarbalita, lapislázuli, cerámica de inspiración diaguita, textiles y productos de papaya, además de restaurantes de comida típica en el nivel superior.</p><p class="mt-4 leading-7 text-recova-ink/70">Más que una parada de compras, es un buen punto para entender el carácter comercial del centro histórico de La Serena y armar un paseo a pie por iglesias, museos y plazas cercanas.</p></div>
-      <figure class="arch-card min-h-[420px] bg-recova-stone"><img src={photos[1].src} alt={photos[1].alt} loading="lazy" decoding="async" class="h-full min-h-[420px] w-full object-cover"/><figcaption class="absolute bottom-3 left-3 rounded-full bg-recova-ink/75 px-3 py-1.5 text-xs text-white backdrop-blur">Productos regionales · foto real</figcaption></figure>
+      <div><p class="section-kicker">Historia y comercio</p><h2 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Un mercado con etapas distintas</h2><p class="mt-6 text-lg leading-8 text-recova-ink/75">Un decreto municipal de 2015 describe la reinauguración del edificio en 1981, tras la reconstrucción vinculada al terremoto de 1975. Enumera 143 locales de distintos giros, entre ellos restaurantes y artesanía: es una descripción histórica, no un censo de negocios abiertos hoy.</p><p class="mt-4 leading-7 text-recova-ink/70">El portal de SERNATUR Coquimbo presenta La Recova como un mercado de artesanía, frutos y restaurantes turísticos, con las papayas en almíbar como producto característico. Puedes usar esas referencias para elegir qué mirar y preguntar a cada vendedor por la oferta del día.</p></div>
+      <figure class="arch-card min-h-[420px] bg-recova-stone"><img src={photos[1].src} alt={photos[1].alt} loading="lazy" decoding="async" class="h-full min-h-[420px] w-full object-cover"/><figcaption class="absolute bottom-3 left-3 rounded-full bg-recova-ink/75 px-3 py-1.5 text-xs text-white backdrop-blur">Puesto fotografiado en 2025 · oferta histórica</figcaption></figure>
     </section>
 
     <section id="visita" class="bg-recova-ink py-20 text-white lg:py-28">
-      <div class="mx-auto max-w-7xl px-5 lg:px-8"><p class="section-kicker !text-recova-stone">Planifica</p><h2 class="mt-3 max-w-3xl font-display text-4xl sm:text-5xl">Datos útiles, sin inventar certezas</h2><div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🎟️</span><h3 class="mt-5 font-display text-2xl">Entrada</h3><p class="mt-3 text-white/70">Acceso gratuito. Compras y consumos se pagan aparte.</p></article>
-        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">⏱️</span><h3 class="mt-5 font-display text-2xl">Tiempo sugerido</h3><p class="mt-3 text-white/70">45–90 min para recorrer; 1,5–2 h si sumas almuerzo.</p></article>
-        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🕙</span><h3 class="mt-5 font-display text-2xl">Horario de referencia</h3><p class="mt-3 text-white/70">Plataformas recientes publican alrededor de 10:00–19:00. Puede variar por local, temporada o festivo.</p></article>
-        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🅿️</span><h3 class="mt-5 font-display text-2xl">Estacionamiento</h3><p class="mt-3 text-white/70">No contamos con evidencia de estacionamiento propio. Prefiere opciones públicas del centro y revisa señalización.</p></article>
+      <div class="mx-auto max-w-7xl px-5 lg:px-8"><p class="section-kicker !text-recova-stone">Planifica</p><h2 class="mt-3 max-w-3xl font-display text-4xl sm:text-5xl">Elige el propósito de tu visita</h2><div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🎟️</span><h3 class="mt-5 font-display text-2xl">Entrada</h3><p class="mt-3 text-white/70">La información consultada no establece una tarifa general vigente. Pregunta por condiciones concretas antes de pagar o contratar una actividad.</p></article>
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">⏱️</span><h3 class="mt-5 font-display text-2xl">Tiempo sugerido</h3><p class="mt-3 text-white/70">Una compra concreta, mirar los puestos y comer son planes distintos. Elige tu prioridad y deja margen para el regreso.</p></article>
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🕙</span><h3 class="mt-5 font-display text-2xl">Horario de referencia</h3><p class="mt-3 text-white/70">Consulta la tabla de fuentes y revisa tu día, especialmente si es festivo. Un horario del edificio no confirma que cada vendedor atienda durante toda la franja.</p></article>
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-6"><span class="text-2xl">🅿️</span><h3 class="mt-5 font-display text-2xl">Estacionamiento</h3><p class="mt-3 text-white/70">No se ha confirmado estacionamiento exclusivo. Revisa dónde está permitido detenerse y cómo llegar desde allí al acceso que vayas a usar.</p></article>
       </div></div>
     </section>
 
-    <section id="sabores" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr]"><div><p class="section-kicker">Sabores cercanos</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">Comer con contexto local</h2><p class="mt-5 leading-7 text-recova-ink/70">En el segundo piso del propio mercado hay restaurantes y cocina típica. Para seguir caminando por el centro, una alternativa conocida es Donde El Guatón, en Brasil 750, con parrilla, platos chilenos y mariscos.</p></div><div class="grid gap-4 sm:grid-cols-2"><article class="rounded-3xl bg-recova-cream p-7"><p class="section-kicker">Dentro del mercado</p><h3 class="mt-2 font-display text-3xl">Segundo piso de La Recova</h3><p class="mt-3 text-recova-ink/70">Ideal para probar pescados, mariscos y preparaciones tradicionales sin salir del recorrido.</p></article><article class="rounded-3xl bg-recova-terracotta p-7 text-white"><p class="text-xs font-bold uppercase tracking-[.15em] text-white/70">A pocos minutos del centro</p><h3 class="mt-2 font-display text-3xl">Donde El Guatón</h3><p class="mt-3 text-white/75">Restaurante chileno en Brasil 750, práctico para combinar mercado + almuerzo.</p></article></div></div></section>
+    <section id="sabores" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr]"><div><p class="section-kicker">Artesanía y sabores</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">Mirar, comparar y preguntar</h2><p class="mt-5 leading-7 text-recova-ink/70">SERNATUR describe puestos de artesanía, frutos y restaurantes turísticos. Esa referencia general permite orientar la visita, pero no identifica qué negocios estarán abiertos ni sus menús o precios actuales.</p></div><div class="grid gap-4 sm:grid-cols-2"><article class="rounded-3xl bg-recova-cream p-7"><p class="section-kicker">Producto característico</p><h3 class="mt-2 font-display text-3xl">Papayas en almíbar</h3><p class="mt-3 text-recova-ink/70">El portal regional las destaca como un clásico de La Recova. Comprueba ingredientes, envase, precio y condiciones de transporte antes de elegir.</p></article><article class="rounded-3xl bg-recova-terracotta p-7 text-white"><p class="text-xs font-bold uppercase tracking-[.15em] text-white/70">Una compra informada</p><h3 class="mt-2 font-display text-3xl">Material y procedencia</h3><p class="mt-3 text-white/75">Pregunta quién hizo la pieza, con qué material y dónde. Para comer, revisa el menú y tus necesidades alimentarias directamente con el local elegido.</p></article></div></div></section>
 
-    <section id="mapa" class="bg-recova-cream py-20 lg:py-28"><div class="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[.8fr_1.2fr] lg:px-8"><div><p class="section-kicker">Transporte detallado</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">En pleno centro histórico</h2><div class="mt-6 space-y-5 text-recova-ink/75"><p><strong class="text-recova-ink">A pie:</strong> desde la Plaza de Armas, recorre el centro hacia Cienfuegos/Cantournet. Es una zona cómoda para enlazar varias visitas caminando.</p><p><strong class="text-recova-ink">Transporte público:</strong> distintas líneas circulan por calles del centro; las rutas y paraderos pueden cambiar, por lo que conviene verificar el trayecto el mismo día.</p><p><strong class="text-recova-ink">Auto:</strong> considera que el centro puede tener alta demanda de estacionamiento. No asumas que el mercado dispone de estacionamiento propio.</p></div><a href="https://maps.app.goo.gl/Y37TvRasJHfBQmFW6" rel="noopener noreferrer" class="mt-7 inline-flex rounded-full bg-recova-terracotta px-5 py-3 font-bold text-white">Abrir en Google Maps</a></div><div class="overflow-hidden rounded-[2rem] border border-recova-stone bg-white shadow-xl"><iframe title="Mapa de La Recova de La Serena" src="https://www.google.com/maps?q=La%20Recova%2C%20Cienfuegos%20563%2C%20La%20Serena%2C%20Chile&output=embed&hl=es-CL" width="100%" height="520" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div></section>
+    <section id="mapa" class="bg-recova-cream py-20 lg:py-28"><div class="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[.8fr_1.2fr] lg:px-8"><div><p class="section-kicker">Transporte detallado</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">En pleno centro histórico</h2><div class="mt-6 space-y-5 text-recova-ink/75"><p><strong class="text-recova-ink">A pie:</strong> elige desde tu origen un recorrido hacia Cienfuegos/Cantournet con cruces habilitados. Revisa superficies, movilidad y restricciones antes de encadenar paradas.</p><p><strong class="text-recova-ink">Transporte público:</strong> no se ha verificado una línea, frecuencia o paradero vigente en esta guía. Comprueba el trayecto y el último tramo con el operador.</p><p><strong class="text-recova-ink">Auto:</strong> acuerda una parada legal y el regreso; la ubicación del mercado no implica disponer de estacionamiento propio.</p></div><a href="https://maps.app.goo.gl/Y37TvRasJHfBQmFW6" rel="noopener noreferrer" class="mt-7 inline-flex rounded-full bg-recova-terracotta px-5 py-3 font-bold text-white">Abrir en Google Maps</a></div><div class="overflow-hidden rounded-[2rem] border border-recova-stone bg-white shadow-xl"><iframe title="Mapa de La Recova de La Serena" src="https://www.google.com/maps?q=La%20Recova%2C%20Cienfuegos%20563%2C%20La%20Serena%2C%20Chile&output=embed&hl=es-CL" width="100%" height="520" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div></section>
 
-    <section id="alrededores" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><p class="section-kicker">Alrededores</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">Tres paradas para seguir a pie</h2><div class="mt-10 grid gap-5 md:grid-cols-3"><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Centro histórico</span><h3 class="mt-3 font-display text-2xl">Museo Arqueológico de La Serena</h3><p class="mt-3 text-recova-ink/70">Una continuación natural para conocer culturas prehispánicas y patrimonio regional.</p></article><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Paseo urbano</span><h3 class="mt-3 font-display text-2xl">Plaza de Armas</h3><p class="mt-3 text-recova-ink/70">El corazón cívico del casco histórico, rodeado de arquitectura y servicios.</p></article><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Patrimonio religioso</span><h3 class="mt-3 font-display text-2xl">Catedral de La Serena</h3><p class="mt-3 text-recova-ink/70">Una de las iglesias más reconocibles del circuito patrimonial del centro.</p></article></div></section>
+    <section id="alrededores" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><p class="section-kicker">Alrededores</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">Ideas para otra parada en el centro</h2><div class="mt-10 grid gap-5 md:grid-cols-3"><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Centro histórico</span><h3 class="mt-3 font-display text-2xl">Museo Arqueológico de La Serena</h3><p class="mt-3 text-recova-ink/70">El portal regional lo sitúa en Cordovéz esquina Cienfuegos. Consulta su propio horario y acceso antes de sumarlo al plan.</p></article><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Paseo urbano</span><h3 class="mt-3 font-display text-2xl">Plaza de Armas</h3><p class="mt-3 text-recova-ink/70">El portal regional describe este paseo público y su pileta de piedra. Elige el trayecto según los cruces y el tiempo que tengas.</p></article><article class="rounded-3xl border border-recova-stone bg-white p-7"><span class="text-sm font-bold text-recova-terracotta">Patrimonio religioso</span><h3 class="mt-3 font-display text-2xl">Catedral de La Serena</h3><p class="mt-3 text-recova-ink/70">Una visita distinta del mercado: confirma el acceso y las actividades de la fecha antes de planear entrar.</p></article></div></section>
 
-    <section class="bg-recova-terracotta py-20 text-white"><div class="mx-auto max-w-7xl px-5 lg:px-8"><div class="grid gap-8 lg:grid-cols-2"><div><p class="text-xs font-bold uppercase tracking-[.16em] text-white/70">Mejor momento</p><h2 class="mt-3 font-display text-4xl">Ve cuando el mercado esté vivo, no con prisa</h2></div><div class="grid gap-4 sm:grid-cols-2"><div class="rounded-3xl bg-white/10 p-6"><strong class="font-display text-2xl">Mañana / mediodía</strong><p class="mt-2 text-white/75">Suele ser una franja práctica para encontrar más puestos activos y enlazar con almuerzo.</p></div><div class="rounded-3xl bg-white/10 p-6"><strong class="font-display text-2xl">45–120 min</strong><p class="mt-2 text-white/75">El rango depende de cuánto quieras comprar, conversar con locatarios o comer.</p></div></div></div></div></section>
+    <section class="bg-recova-terracotta py-20 text-white"><div class="mx-auto max-w-7xl px-5 lg:px-8"><p class="text-xs font-bold uppercase tracking-[.16em] text-white/70">Antes de salir</p><h2 class="mt-3 font-display text-4xl">Una fecha y un objetivo claros</h2><p class="mt-5 max-w-3xl leading-7 text-white/85">Si buscas un producto o un local concreto, confirma su atención antes del viaje. Si prefieres observar el conjunto, elige una franja compatible con el transporte de regreso; no se promete una cantidad de puestos abiertos ni una duración fija.</p></div></section>
 
-    <section id="fotos" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div class="flex flex-wrap items-end justify-between gap-5"><div><p class="section-kicker">Fotos reales</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">La Recova en imágenes</h2></div><p class="max-w-xl text-sm leading-6 text-recova-ink/65">Imágenes documentales de Wikimedia Commons y Chile Travel. Haz clic para ampliar; los créditos y licencias se indican en cada imagen.</p></div><div class="mt-10 grid auto-rows-[240px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {photos.map((photo, index) => <button class:list={["gallery-button group relative overflow-hidden rounded-3xl text-left", index===0 && "sm:col-span-2 lg:row-span-2", index===3 && "lg:col-span-2"]} data-photo={photo.src} data-alt={photo.alt}><img src={photo.src} alt={photo.alt} loading={index===0 ? 'eager':'lazy'} decoding="async" class="h-full w-full object-cover"/><span class="absolute inset-x-3 bottom-3 rounded-2xl bg-recova-ink/75 px-3 py-2 text-xs text-white backdrop-blur">{photo.credit}</span></button>)}
-    </div><div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-recova-ink/60">{photos.map((p) => <a href={p.source} rel="noopener noreferrer" target="_blank" class="underline decoration-recova-stone underline-offset-4">Fuente: {p.credit}</a>)}</div></section>
+    <section id="fotos" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div class="flex flex-wrap items-end justify-between gap-5"><div><p class="section-kicker">Fotos reales</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">La Recova en imágenes</h2></div><p class="max-w-xl text-sm leading-6 text-recova-ink/65">Fotografías de 2013 y 2025, con autor, fecha y licencia. No prueban precios, comercios o actividades actuales. Los archivos web pueden estar redimensionados o comprimidos y el diseño recorta su visualización. Pulsa para ampliar.</p></div><div class="mt-10 grid auto-rows-[240px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {photos.map((photo, index) => <button class:list={["gallery-button group relative overflow-hidden rounded-3xl text-left", index===0 && "sm:col-span-2 lg:row-span-2", index>0 && "lg:col-span-2"]} data-photo={photo.src} data-alt={photo.alt}><img src={photo.src} alt={photo.alt} loading={index===0 ? 'eager':'lazy'} decoding="async" class="h-full w-full object-cover"/><span class="absolute inset-x-3 bottom-3 rounded-2xl bg-recova-ink/75 px-3 py-2 text-xs text-white backdrop-blur">{photo.credit}</span></button>)}
+    </div><div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-recova-ink/60">{photos.map((p) => <a href={p.source} rel="noopener noreferrer" target="_blank" class="underline decoration-recova-stone underline-offset-4">Fuente: {p.credit}</a>)}{photos.map((p) => <a href={p.licenseUrl} target="_blank" rel="noopener noreferrer" class="underline">{p.license}</a>)}</div></section>
+
+    <section id="fuentes" class="mx-auto max-w-7xl px-5 py-16 lg:px-8"><h2 class="font-display text-3xl">Fuentes y fecha de consulta</h2><p class="mt-4 max-w-3xl">Información revisada el 26 de octubre de 2026. Las fuentes tienen alcances y fechas distintos; esta guía no actúa como administración del mercado.</p><ul class="source-list mt-5 space-y-3"><li><a class="underline" href="https://turismoregiondecoquimbo.cl/vida-urbana/">SERNATUR Coquimbo · Vida Urbana</a>: descripción del mercado y horario sin actualización visible.</li><li><a class="underline" href="https://turismoregiondecoquimbo.cl/wp-content/uploads/2026/06/REPORTE-VIAJERO-2026-Junio_compressed.pdf">Reporte viajero · junio de 2026, página 15</a>: otra franja de atención; casilla de precio vacía.</li><li><a class="underline" href="https://transparencia.laserena.cl/documentos/doc_34_2310_02092015024606.pdf">Decreto municipal de 2015</a>: antecedentes del edificio y número histórico de locales.</li><li><a class="underline" href="https://turismoregiondecoquimbo.cl/cultura-y-patrimonio/">SERNATUR · Cultura y Patrimonio</a>: museo y catedral como visitas separadas.</li><li><a class="underline" href={ATTRACTION.googleMapsUrl}>Google Maps · ficha de terceros</a>: ubicación, teléfono, valoración y semana con avisos de festivos.</li></ul><details class="mt-8 rounded-2xl border border-recova-stone p-6"><summary class="cursor-pointer font-bold">Servicios externos y datos</summary><p class="mt-4">Esta página carga Google Analytics al abrirse y no ofrece un selector propio para impedir esa carga. El mapa incrustado conecta con Google Maps. El alojamiento puede incorporar su medición de rendimiento de Cloudflare, independiente de Analytics; encontrar un script no demuestra que se haya enviado información en una visita concreta.</p><p class="mt-3"><a class="underline" href="https://policies.google.com/privacy">Privacidad de Google</a> · <a class="underline" href="https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/">Origen y recogida de datos de Cloudflare Web Analytics</a></p></details></section>
 
     <section id="faq" class="bg-recova-cream py-20 lg:py-28"><div class="mx-auto max-w-4xl px-5 lg:px-8"><p class="section-kicker">FAQ</p><h2 class="mt-3 font-display text-4xl sm:text-5xl">Preguntas antes de ir</h2><div class="mt-8 divide-y divide-recova-stone/60 border-y border-recova-stone/60">{faq.map(([q,a]) => <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-5 font-bold"><span>{q}</span><span class="text-2xl text-recova-terracotta transition group-open:rotate-45">+</span></summary><p class="max-w-3xl pt-3 leading-7 text-recova-ink/70">{a}</p></details>)}</div></div></section>
   </main>
@@ -251,12 +222,12 @@ const websiteLd = {
       <div class="flex flex-col gap-5">
         <img src="/logo.svg" alt={ATTRACTION.name} class="h-auto w-52 rounded-2xl" />
         <div class="flex flex-wrap gap-5 text-sm text-white/65"><a href="#inicio">Inicio</a><a href="#horario">Horario</a><a href="#visita">Planifica</a><a href="#mapa">Cómo llegar</a><a href="#fotos">Fotos</a><a href="#faq">FAQ</a></div>
-        <p class="max-w-3xl text-xs leading-5 text-white/50">Sitio informativo independiente y no oficial; no representa a la Municipalidad de La Serena, a la administración del mercado ni a sus locatarios. Horarios, comercios y servicios pueden cambiar.</p>
+        <p class="max-w-3xl text-xs leading-5 text-white/50">Guía educativa y turística independiente, no oficial y sin fines de lucro; no representa a la Municipalidad de La Serena, a la administración del mercado ni a sus locatarios. Horarios, comercios y servicios pueden cambiar.</p>
       </div>
       <div class="text-sm leading-7 text-white/75">
         <h2 class="font-display text-2xl text-white">{ATTRACTION.name}</h2>
         <address class="mt-3 not-italic">{ATTRACTION.streetAddress}<br />{ATTRACTION.postalCode} {ATTRACTION.addressLocality}, {ATTRACTION.addressRegion}, Chile</address>
-        <p class="mt-2">Teléfono: <a href={ATTRACTION.telephoneHref} class="underline decoration-white/40 underline-offset-4">{ATTRACTION.telephone}</a></p>
+        <p class="mt-2">Teléfono publicado en Maps: <a href={ATTRACTION.telephoneHref} class="underline decoration-white/40 underline-offset-4">{ATTRACTION.telephone}</a></p>
         <p class="mt-2"><a href={ATTRACTION.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="underline decoration-white/40 underline-offset-4">Ver en Google Maps</a> · Plus Code {ATTRACTION.plusCode}</p>
         <p class="mt-2 text-xs text-white/50">Valoración {ratingLabel}/5 · {reviewLabel} opiniones ({ATTRACTION.ratingSnapshot}).</p>
       </div>

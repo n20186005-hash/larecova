@@ -1,46 +1,15 @@
-# La Recova de La Serena — sitio independiente
+# La Recova de La Serena
 
-Micrositio de una sola página en español de Chile para La Recova, Cienfuegos 563, La Serena. Diseño propio inspirado en sus arquerías neocoloniales, patios, tejas y artesanía regional.
+Guía educativa y turística independiente, no oficial y sin fines de lucro, en español de Chile. No representa a la administración del mercado ni a sus locatarios.
 
-## Stack
+## Desarrollo
 
-- Astro 7.3.1
-- @astrojs/cloudflare 14.3.0
-- @astrojs/sitemap 3.7.4
-- Tailwind CSS 4.3.3 + @tailwindcss/vite 4.3.3
-- TypeScript 6.0.3
-- Wrangler 4.129.0
-- pnpm 12.3.4
-- Node.js 24.20.0 LTS
+Node.js 24.20.0 y pnpm 12.3.4. Instalar con `pnpm install --frozen-lockfile`, validar con `pnpm check` y construir con `pnpm build`. El proyecto conserva Astro SSR y el adaptador Cloudflare. El comando de despliegue configurado en el proyecto usa Wrangler; la configuración generada del adaptador es la entrada del build.
 
-Todas las versiones están fijadas de forma exacta en `package.json`. No se usa `pnpm-workspace.yaml` porque es un proyecto de un solo paquete.
+El dominio predeterminado es https://larecova.org; `SITE` permite establecer el origen del build. La entrada Worker normaliza las variantes de producción antes de delegar al adaptador y conserva las respuestas 404 reales.
 
-## Dominio / canonical / sitemap
+## Contenido y fotografías
 
-El dominio se configura únicamente a través de `SITE`, consumido por el campo `site` de `astro.config.ts`.
+Los horarios de distintas fuentes se muestran con su fecha y alcance; la semana de festivos de una ficha no es un horario permanente. Las fotografías históricas conservadas incluyen autor, fecha, fuente, licencia y aviso de adaptación en la página. No constituyen un directorio comercial o una oferta vigente.
 
-- Sin `SITE`: el proyecto debe poder compilar; se omiten canonical/OG absolutos y no se activa `@astrojs/sitemap`.
-- Con `SITE`: Astro deriva canonical, Open Graph, JSON-LD y sitemap de ese único valor.
-
-Ejemplo de despliegue: define `SITE` en el entorno de build con la URL canónica final y vuelve a construir.
-
-## Comandos previstos de validación
-
-```bash
-rm -rf node_modules dist .astro
-CI=1 corepack pnpm install --frozen-lockfile
-pnpm check
-pnpm build
-```
-
-## Imágenes
-
-Las fotografías usadas son imágenes reales de La Recova procedentes de Wikimedia Commons y Chile Travel, con crédito/fuente visible en la galería. En esta copia de trabajo permanecen referenciadas por URL porque el entorno de generación no pudo descargar archivos externos; no se sustituyeron por imágenes generadas ni por placeholders.
-
-## Analytics
-
-GA4: `G-HXM22WWPKP`.
-
-## Cloudflare
-
-`wrangler.jsonc` está preparado para el worker generado por el adaptador oficial de Astro. El proyecto no usa base de datos, login ni CMS.
+La página conserva su Google Analytics, mapa de Google y visor de imágenes. La explicación visible de servicios externos describe la carga de Analytics sin un selector propio. No hay módulo de clima, cuentas de usuario ni funcionalidades nuevas de base de datos.

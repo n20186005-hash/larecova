@@ -41,8 +41,8 @@ export const ATTRACTION = {
   sameAs: ['https://maps.app.goo.gl/Y37TvRasJHfBQmFW6'],
   /** Valoración pública (Google Maps); se muestra siempre con su salvedad. */
   ratingValue: 4.1,
-  reviewCount: 22503,
-  ratingSnapshot: 'Google Maps, 26 de octubre de 2026'
+  reviewCount: 22504,
+  ratingSnapshot: 'Google Maps, 29 de octubre de 2026'
 } as const;
 
 /** Fuentes con fechas y alcance distintos; no constituyen un horario unificado. */

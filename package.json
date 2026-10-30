@@ -26,5 +26,9 @@
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
     "wrangler": "4.152.0"
-  }
+  },
+  "trustedDependencies": [
+    "esbuild",
+    "workerd"
+  ]
 }
